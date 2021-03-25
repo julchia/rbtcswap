@@ -1,0 +1,17 @@
+$TESTNET_COLOR: #e53929;
+
+.app {
+  &__header {
+    &__link {
+      color: white !important;
+      text-decoration: none;
+
+      &:hover {
+        text-decoration: underline;
+      }
+    }
+    &__subtitle {
+      color: $TESTNET_COLOR;
+    }
+  }
+}

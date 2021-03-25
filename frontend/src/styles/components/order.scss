@@ -1,0 +1,11 @@
+.order {
+  &__title {
+    position: relative;
+
+    &__status {
+      bottom: 1px;
+      margin-left: 20px;
+      position: absolute;
+    }
+  }
+}
