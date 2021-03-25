@@ -43,7 +43,7 @@
     <a href="https://github.com/Teks-Capital/rbtcswap/issues">Request Feature</a>
   </p>
 </p>
-Install the following dependenciesble of Contents</h2></summary>
+</summary>
   <ol>
     <li>
       <a href="#getting-started">Getting Started</a>
