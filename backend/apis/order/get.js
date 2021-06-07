@@ -4,6 +4,7 @@ const { rateLimiter } = require('../../utils/rate-limiter');
 const blocksModel = require('../../models/blocks');
 const express = require('express');
 const ordersModel = require('../../models/orders');
+const mongoSanitize = require('express-mongo-sanitize');
 
 require('dotenv').config();
 
@@ -22,12 +23,20 @@ const getConfirmations = (chain, blockNumber) => {
 }
 
 router.get('/:id', rateLimiter, async (req, res) => {
-  const { id } = req.params;
+  
+  const { id } = mongoSanitize.sanitize(req.params);
 
   try {
     /**
      * Busco la orden por id pero que no esté marcada como deleted.
      */
+
+    if (_.isEmpty(id)) {
+      return res.status(400).json({
+        error: 'Missing Parameters'
+      });
+    }
+
     const order = await ordersModel.findOne({
       _id: id,
       deleted: false
@@ -45,7 +54,6 @@ router.get('/:id', rateLimiter, async (req, res) => {
     const btcBlockNumber = _.get(block, BTC);
     const rskBlockNumber = _.get(block, RSK);
 
-    
     return res.json({
       data: {
         order: {
